@@ -19,7 +19,7 @@ class UserInfoWidget extends StatelessWidget {
       elevation: 0.0,
       color: const Color(0xffFAFAFA),
       child: ListTile(
-        leading: SvgPicture.asset(AppAssets.imagesFrame),
+        leading: SvgPicture.asset(Assets.imagesFrame),
         title: Text(
           title,
           style: AppStyles.styleSemiBold16,

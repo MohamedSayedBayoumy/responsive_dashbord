@@ -7,7 +7,9 @@ class CustomDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Row(
-      children: [Expanded(child: CustomDrawer())],
+      children: [
+        Expanded(child: CustomDrawer()),
+      ],
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/adaptive_layout_widget.dart';
-import '../widgets/custom_desktop_view.dart';
+import '../widgets/_custom_desktop_view.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/widgets/adaptive_layout_widget.dart';
+import '../../core/widgets/adaptive_layout_widget.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});

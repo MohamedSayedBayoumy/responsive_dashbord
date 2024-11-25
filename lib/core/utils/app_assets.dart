@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_single_quotes
-class Assets {
-  Assets._();
+class AppAssets {
+  AppAssets._();
   
   /// Assets for imagesAvatar2
   /// assets/images/avatar_2.svg

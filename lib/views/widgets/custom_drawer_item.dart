@@ -7,9 +7,11 @@ class CustomDrawerItem extends StatelessWidget {
     super.key,
     required this.avatar,
     required this.title,
+    required this.isActive,
   });
 
   final String avatar, title;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,18 @@ class CustomDrawerItem extends StatelessWidget {
       leading: SvgPicture.asset(avatar),
       title: Text(
         title,
-        style: AppStyles.styleRegular16,
+        style:
+            isActive == true ? AppStyles.styleBold16 : AppStyles.styleRegular16,
       ),
+      trailing: isActive == true
+          ? Container(
+              width: 3,
+              decoration: BoxDecoration(
+                color: const Color(0xff4EB7F2),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            )
+          : null,
     );
   }
 }

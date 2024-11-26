@@ -47,4 +47,10 @@ abstract class AppStyles {
     fontFamily: "Montserrat",
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle styleBold16 = TextStyle(
+    fontSize: 16,
+    color: Color(0xff4EB7F2),
+    fontFamily: "Montserrat",
+    fontWeight: FontWeight.bold,
+  );
 }

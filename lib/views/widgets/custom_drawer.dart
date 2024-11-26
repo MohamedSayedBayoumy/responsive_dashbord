@@ -5,39 +5,78 @@ import '../../models/drawer_item.dart';
 import 'custom_drawer_item.dart';
 import 'user_info.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
 
-  static const List<DrawerItemMode> listItems = [
-    DrawerItemMode(avatar: Assets.imagesDashBorad, title: "Dashboard"),
-    DrawerItemMode(avatar: Assets.imagesTransaction, title: "My Transaction"),
-    DrawerItemMode(avatar: Assets.imagesGraph, title: "Statistics"),
-    DrawerItemMode(avatar: Assets.imagesWallet2, title: "Wallet Account"),
-    DrawerItemMode(avatar: Assets.imagesStatistics, title: "My Investments"),
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  List<DrawerItemMode> listItems = [
+    const DrawerItemMode(avatar: Assets.imagesDashBorad, title: "Dashboard"),
+    const DrawerItemMode(
+        avatar: Assets.imagesTransaction, title: "My Transaction"),
+    const DrawerItemMode(avatar: Assets.imagesGraph, title: "Statistics"),
+    const DrawerItemMode(avatar: Assets.imagesWallet2, title: "Wallet Account"),
+    const DrawerItemMode(
+        avatar: Assets.imagesStatistics, title: "My Investments"),
   ];
 
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: UserInfoWidget(
-            avatar: Assets.imagesAvatar2,
-            title: "Mohamed Sayed",
-            subtitle: "Mobile Software Engineer",
+    return CustomScrollView(
+      slivers: [
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: UserInfoWidget(
+              avatar: Assets.imagesAvatar2,
+              title: "Mohamed Sayed",
+              subtitle: "Mobile Software Engineer",
+            ),
           ),
         ),
-        ListView.builder(
+        SliverList.builder(
           itemCount: listItems.length,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: CustomDrawerItem(
-              avatar: listItems[index].avatar,
-              title: listItems[index].title,
+          itemBuilder: (context, index) => InkWell(
+            onTap: () {
+              if (currentIndex != index) {
+                currentIndex = index;
+                setState(() {});
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: CustomDrawerItem(
+                avatar: listItems[index].avatar,
+                title: listItems[index].title,
+                isActive: currentIndex == index,
+              ),
             ),
+          ),
+        ),
+        const SliverFillRemaining(
+          hasScrollBody: false,
+          child: Column(
+            children: [
+              Expanded(child: SizedBox()),
+              CustomDrawerItem(
+                avatar: Assets.imagesSetting2,
+                title: "Setting system",
+                isActive: false,
+              ),
+              SizedBox(height: 10.0),
+              CustomDrawerItem(
+                avatar: Assets.imagesLogout,
+                title: "Logout",
+                isActive: false,
+              ),
+              SizedBox(
+                height: 48,
+              ),
+            ],
           ),
         ),
       ],

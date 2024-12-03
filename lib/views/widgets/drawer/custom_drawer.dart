@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/app_assets.dart';
-import '../../models/drawer_item.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../models/drawer_item.dart';
 import 'custom_drawer_item.dart';
 import 'user_info.dart';
 

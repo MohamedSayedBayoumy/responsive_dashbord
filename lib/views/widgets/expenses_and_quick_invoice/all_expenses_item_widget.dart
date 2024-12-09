@@ -14,10 +14,24 @@ class AllExpensesItemWidget extends StatefulWidget {
 
 class _AllExpensesItemWidgetState extends State<AllExpensesItemWidget> {
   List<ExpensesItemModel> expenses = [
-    ExpensesItemModel(price: r"$20,129", title: "Balance", date: "April 2022"),
-    ExpensesItemModel(price: r"$20,129", title: "Income", date: "April 2022"),
-    ExpensesItemModel(price: r"$20,129", title: "Expenses", date: "April 2022"),
+    ExpensesItemModel(
+      price: r"$20,129",
+      title: "Balance",
+      date: "April 2022",
+    ),
+    ExpensesItemModel(
+      price: r"$20,129",
+      title: "Income",
+      date: "April 2022",
+    ),
+    ExpensesItemModel(
+      price: r"$20,129",
+      title: "Expenses",
+      date: "April 2022",
+    ),
   ];
+
+  int currentActiveIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,39 +41,57 @@ class _AllExpensesItemWidgetState extends State<AllExpensesItemWidget> {
         final value = e.value;
 
         return Expanded(
-          child: Container(
-            padding: const EdgeInsetsDirectional.all(16),
-            margin: index == 1
-                ? const EdgeInsetsDirectional.symmetric(horizontal: 10.0)
-                : null,
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xfff1f1f1)),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _itemHeaderWidget(),
-                const SizedBox(height: 34),
-                Text(
-                  value.title,
-                  style: AppStyles.styleSemiBold16,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  value.date,
-                  style: AppStyles.styleRegluar14.copyWith(
-                    color: const Color(0xffAAAAAA),
+          child: InkWell(
+            onTap: () {
+              currentActiveIndex = e.key;
+              setState(() {});
+            },
+            child: Container(
+              padding: const EdgeInsetsDirectional.all(16),
+              margin: index == 1
+                  ? const EdgeInsetsDirectional.symmetric(horizontal: 10.0)
+                  : null,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: currentActiveIndex == e.key
+                          ? const Color(0xff4EB7F2)
+                          : const Color(0xfff1f1f1)),
+                  borderRadius: BorderRadius.circular(12),
+                  color: currentActiveIndex == e.key
+                      ? const Color(0xff4EB7F2)
+                      : Colors.transparent),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _itemHeaderWidget(),
+                  const SizedBox(height: 34),
+                  Text(
+                    value.title,
+                    style: AppStyles.styleSemiBold16.copyWith(
+                        color: currentActiveIndex == e.key
+                            ? Colors.white
+                            : const Color(0xff064061)),
                   ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  value.price,
-                  style: AppStyles.styleSemiBold20.copyWith(
-                    color: const Color(0xff4EB7F2),
+                  const SizedBox(height: 8),
+                  Text(
+                    value.date,
+                    style: AppStyles.styleRegluar14.copyWith(
+                      color: currentActiveIndex == e.key
+                          ? Colors.white
+                          : const Color(0xffAAAAAA),
+                    ),
                   ),
-                )
-              ],
+                  const SizedBox(height: 16),
+                  Text(
+                    value.price,
+                    style: AppStyles.styleSemiBold20.copyWith(
+                      color: currentActiveIndex == e.key
+                          ? Colors.white
+                          : const Color(0xff4EB7F2),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );
